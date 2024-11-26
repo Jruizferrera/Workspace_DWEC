@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../estilo/stylesParte1.css">  
+        <title>Tarea 5 - Parte 1</title>
+    </head>
+    <body>
+        <h1>Formulario Parte 1</h1>
+
+        <div id="contenedor">
+
+            <form>
+                <label for="name">
+                    Nombre:
+                    <input type="text" id="name" name="name" autocomplete="on" required>
+                </label>
+                
+                <label for="surname">
+                    Apellidos:
+                    <input type="text" id="surname" name="surname" autocomplete="on" required>
+                </label>
+
+                <label for="dni">
+                    DNI:
+                    <input type="text" id="dni" name="dni" autocomplete="on" required>
+                </label>
+
+                <label for="nacionalidad">
+                    Nacionalidad:
+                    <select name="nacionalidad" id="nacionalidad">
+                        <option value="" selected></option>
+                        <option value="Española">Española</option>
+                        <option value="NoEspañola">No Española</option>
+                    </select>
+                </label>
+
+                <label for="titulacion">
+                    Código de Titulación:
+                    <input type="text" id="titulacion" name="titulacion" autocomplete="on" required>
+                </label>
+
+                <label for="fecha">
+                    Fecha de Nacimiento:
+                    <input type="date" id="fecha" name="fecha" autocomplete="on" required>
+                </label>
+
+                <label for="telefono">
+                    Teléfono:
+                    <input type="tel" id="telefono" name="telefono" autocomplete="on" required>
+                </label>
+
+                <label for="email">
+                    Email:
+                    <input type="email" id="email" name="email" autocomplete="on" required>
+                </label>
+
+                <label for="curso">
+                    Curso:
+                    <input type="text" name="curso" id="curso" required>
+                </label>
+
+                <fieldset>
+                    <legend>Desempleado:</legend>
+                    <label for="si">
+                        <input type="radio" name="desempleado" id="si">
+                        Sí
+                    </label>
+
+                    <label for="no">
+                        <input type="radio" name="desempleado" id="no" checked>
+                        No
+                    </label>
+
+                </fieldset>
+
+                <input type="submit" value="Enviar" onclick="pulsarEnviar()">
+                
+            </form>
+
+        <fieldset>
+            <legend>
+                Mensaje de validación
+            </legend>
+            <div id="errores">
+
+            </div>
+        </fieldset>
+
+        </div>
+
+        <script src="../modelo/javascriptParte1.js" ></script>
+    </body>
+</html>

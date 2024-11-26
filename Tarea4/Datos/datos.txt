@@ -1,0 +1,39 @@
+**************** Datos introducidos de forma automática ***********************
+
+*** Empresa 1 ***
+"Empresa1","a01012525","AVENIDA EUROPA 5 MADRID",912323234,"LUIS GOMEZ"
+
+Coche 1: "0347-XDW","Barracuda",1/5/2002,1500
+
+Coche 2: "7592-GPH","Mustang",6/9/2000,200000
+
+Coche 3: "2483-THP","Punto",15/3/2006,30000
+
+*** Empresa 2 ***
+"Empresa2","a20038915","AVENIDA EUROPA 7 MADRID",912323232,"LAURA SIMOES"
+
+Coche 4: "4725-LPT","Stilo",25/10/2014,2000
+
+Coche 5: "9435-PTG","Arona",19/6/2001,15000
+
+Coche 6: "3756-KLD","A3",30/11/2010,25000
+
+*********************** Datos de pruebas para la entrada************************
+
+**************Empresas
+
+Ibermatica,a03698455,Calle la romana 7 Barcelona Barcelona,752149365, Jose Garcia
+Plexus,a87352014,Avenida Lusitania 8 2ºB Merida Badajoz,823654109,David Perez
+Leroy Merlin,q035891597,lugar poligono el prado 9 Caceres Caceres,631215487,Albaro gonzalez
+Lider aliment S.L, s28469548, Avenida la martir 10 5ºA Don benito Badajoz,924586347, Daniel Seaz
+
+**************Vehiculos
+
+3559-GTY,Auris,15/03/2000,55500
+BA-1234-Z,Mokka,01/09/1996,35700
+CA-3752-GT,Rav4,20/04/1999,38500
+O-6249-TY,Corsa,26/10/1998,23500
+B-8939-Y,Leon,05/03/1994,13500
+2489-PLM,Vectra,03/12/2015,93500
+1587-NTF,Peugeot 306,19/08/2002,103500
+3846-MQW,Caliber,18/07/2012,120500

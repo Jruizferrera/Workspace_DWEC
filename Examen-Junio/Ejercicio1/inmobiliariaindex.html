@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>GESTINMO</title>
+
+
+<script src="inmobiliariajs.js"></script>
+</head>
+
+<body>
+    
+    
+	<header>
+		
+		<h2>GESTIONES INMOBILIARIAS</h2>
+        
+	</header>
+
+	<script>
+        // Creamos array para almacenar objetos para cada inmobiliaria
+       var conjinmobiliarias = [];
+        var nosalir = true;
+        // Creamos dos inmobiliarias una en merida y ota en badajoz, este proceso puede estar dentor de un bucle o ralizar una función para dicho 
+        var inmo1 = new Inmobiliaria("INMOMERIDA");
+        conjinmobiliarias.push(inmo1);
+        var inmo2 = new Inmobiliaria("INMOBADAJOZ");
+        conjinmobiliarias.push(inmo2);
+   
+    while (nosalir){
+
+        var opcion= prompt("¿Que deseas hacer?\n 1.- Insertar nuevo inmueble.\n 2.- ver los datos de un tipo de inmuebles(locales, pisos...)\n 3.-Salir.");
+
+        if (opcion == 1) {
+            
+            var nombreinmo= prompt("introduce el nombre de la empresa INMOMERIDA O INMOBADAJOZ")
+            /*este conjunto de sentencias devuelve la posición en la que se encuentra la inmobiliaria, lo idela es que hubiesemos creado una función o un método para tal fin y podía devolver -1 si no encuentra inmo o la posición de la inmo que busco. Esto lo podéis utilizar en mucha parte del programa*/
+            index=-1;
+            for (i=0; i<conjinmobiliarias.length;i++) {
+                if (nombreinmo==conjinmobiliarias[i].nombre){
+                    index=i;
+                }
+            }
+            var numero = prompt("Inserta el numero del inmueble");
+            var tipo = prompt("Inserta el tipo del inmueble. Puede ser vivenda, locales, terrenos...");   
+            var metros = prompt("Inserta los metros cuadrados del inmueble");
+            var precio = prompt("Inserta el precio de venta");
+            var conservacion = prompt("Inserta el estado de conservacion (nuevo,bueno,parareformar,ruinoso)");
+            // entra en el if solo si encontro la inmobiliaria y agraga el inmueble, esto se puede mejorar yaq yue si no la encuentra no hace nada
+
+            var band_conservación = false;
+            
+            if(conservacion=='nuevo' || conservacion=='bueno' || conservacion=='parareformar'){
+                band_conservación = true;
+            }
+            else if(conservacion=='ruinoso'){
+                var valor = precio/metros;
+
+                if(valor>=300){
+                    alert("El precio del metro cuadrado no puede superar los 300 euros si el estado es ruinoso");
+                }
+                else{
+                    band_conservación=true;
+                }
+            }
+
+            if(band_conservación)
+            {
+                if ( index != -1 ) {
+                    conjinmobiliarias[index].addInmueble(numero, tipo, metros, precio, conservacion);
+                }
+            }
+            
+
+        }
+           // en este caso introducimos una inmobioliaria y un tipo de local y me genera todos los inmuebles d eese tipo para esa inmo             
+        else if (opcion == 2) {
+        
+            var nombreinmo=prompt("inserte inmobiliaria a consultar");
+            index=-1;
+            for (i=0; i<conjinmobiliarias.length;i++) {
+                if (nombreinmo==conjinmobiliarias[i].nombre){
+                    index=i
+                }
+            }
+            //ojo hay error de no localizar la inmo, de localizarla en inmo devuelve un objeto que incluye la inmo en cuestión y todos sus inmu
+            var inmo=conjinmobiliarias[index];
+            var tipoinmueble = prompt("Inserta el tipo del inmueble");
+            var superficie = prompt("Inserta superficie del inmueble");
+            var precio_min = prompt("Inserta precio minimo del inmueble");
+            var precio_max = prompt("Inserta precio maximo del inmueble");
+            /*creo un array datos para almacenar aquellos inmuebles que cumplan el criterio, para ello llamo al metodo mostrar muebles de la clase inmobiliaria*/
+            var datos = [];
+            datos = inmo.mostrarInmuebles(tipoinmueble,superficie,precio_min,precio_max);
+            // entra en el if si hay inmuebles en esa inmo del tipo indicado, es mejorable como otros
+            if (datos.length > 0) {
+                                
+                document.write("   --------NUEVA CONSULTA PARA LA INMOBILIARIA-------    "+ inmo.nombre + "   para lo locales de tipo    "+ tipoinmueble+ "<br> </b>");
+                for (var i = 0; i < datos.length; i++) { 
+                    document.write("<b> DATOS DEL INMUEBLE NUMERO: " + datos[i].numero + "<br> </b>");
+                    document.write("TIPO DEL INMUEBLE: " + datos[i].tipo + "<br>");
+                    document.write("SUPERFICIE: " + datos[i].metros + " metros cuadrados <br>");
+                    document.write("PRECIO DE VENTA: " + datos[i].precio + " euros <br>");
+                    document.write("ESTADO DEL INMUEBLE: " + datos[i].conservacion + "<br>");
+                    document.write("------------------------------------------------------------------<br>");
+                }
+            }
+
+        } else if (opcion == 3) {
+            alert("Hemos acabado ...");         
+            nosalir = false;
+        }
+
+        else {
+            alert ("La opcion introducida no es correcta");
+        }
+
+    }
+		
+	</script>
+	
+	<footer>
+		
+        <h3> Realizado por: Juan Sanchez </h3>
+                    
+	</footer>
+</body>
+</html>

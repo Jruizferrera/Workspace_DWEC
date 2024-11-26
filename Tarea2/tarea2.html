@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 2 DWEC V2</title>
+</head>
+<body>
+    <script>
+
+        iniciar();
+
+        /**
+         * Método que contiene el flujo normal del script
+         */
+        function iniciar(){
+
+            let menu = "¡¡¡¡¡¡ Menu !!!!!!\n\n";
+            menu += "  1. Media\n";
+            menu += "  2. Mínimo\n";    
+            menu += "  3. Máximo\n";
+            menu += "  4. Sumatorio\n";
+            menu += "  5. División\n";
+            menu += "  6. Salir\n\n";
+            menu += "Introduzca opción:\n";
+            
+            let opciones = [0,0,0,0,0];
+            /**
+             * Bucle do-while que controla que las opciones sean válidas
+             */
+            do{
+                var eleccion = prompt(menu);
+                
+                /**
+                 * Comprobamos que no se a pulsado cancelar
+                **/
+                if(eleccion!=null){
+
+                    /*
+                        Convertimos en entero la opcion seleccionada
+                    */
+                    eleccion = parseInt(eleccion);
+
+                    /**
+                     * Comprobamos si la opcion es valida
+                    **/
+                    if(isNaN(eleccion)){
+                        alert("La opción seleccionada no es válida.");
+                    }
+                    else{
+                        
+                        switch(eleccion){
+                            case 1:
+                                media();
+                                opciones[0]+=1;
+                                break;
+                            case 2:
+                                minimo();
+                                opciones[1]+=1;
+                                break;
+                            case 3:
+                                maximo();
+                                opciones[2]+=1;
+                                break;
+                            case 4:
+                                sumatorio();
+                                break;
+                            case 5:
+                                dividir();
+                                opciones[4]+=1;
+                                break;
+                            case 6:
+                                alert("Saliendo del programa...\n\nEjecuciones: \n"+mostrar_opciones(opciones));
+                                
+                                eleccion=null;
+                                break;  
+                        }
+                    }
+                }
+
+            }while(eleccion!=null);
+            
+        }
+        /** Correcto
+         * En ese caso el usuario insertará números, la cantidad de números a insertar es 4. El resultado debe de ser la media de todos los números insertados.
+        **/
+        function media(){
+
+            let cont = 0;
+            let suma = 0;
+
+            /**
+             * Mientras no se pulse cancelar
+            **/
+            do{
+                var valor = prompt("Introduzca el valor "+parseInt(cont+1)+":");
+
+                /**
+                 * Si no se pulsa cancelar
+                **/
+                if(valor!=null){
+
+                    valor = parseFloat(valor);
+
+                    /**
+                     * Si el valor introducido es valido
+                    **/
+                    if(!isNaN(valor)){
+                        suma+=valor;
+                        cont++;
+                    }
+                }
+
+                /**
+                 * Si se ha llegado al numero de valores maximos a introducir
+                **/
+                if(cont==4){
+                    alert("La media es "+parseFloat(suma/cont)+".");
+                    valor=null;
+                }
+
+            }while(valor!=null);
+
+        }
+
+        /** Correcto
+         * En este caso, se insertarán 6 números y el resultado será el menor de todos ellos.
+        **/
+        function minimo(){
+
+            let min = 0;
+            let valor = 0;
+            let cont = 0;
+
+            /**
+             * Mientras no se pulse cancelar
+            **/
+            while(valor!=null){
+                valor = prompt("Introducir el valor "+parseInt(cont+1)+":");
+
+                /**
+                 * Si no se pulsa cancelar
+                **/
+                if(valor!=null){
+                    valor = parseFloat(valor);
+
+                    /**
+                     * Si el valor introducido es valido
+                    **/
+                    if(!isNaN(valor)){
+
+                        /**
+                         * Si min es 0
+                        **/
+                        if(min==0){
+                            min = valor;
+                            cont++;
+                        }
+                        else{
+
+                            /**
+                             * Si el valor introducido es menos que el min
+                            **/
+                            if(min>valor){
+                                min = valor;
+                            }
+                            cont++;
+                        }
+                        
+                    }
+                }
+
+                /**
+                 * Si se ha llegado al numero de valores maximos a introducir
+                **/
+                if(cont==6){
+                    alert("El valor minimo que se ha introducido es "+min+".");
+                    valor=null;
+                }
+
+            }
+
+        }
+        
+        /** Correcto
+         * En este caso, se insertarán 6 números y el resultado será el mayor de todos ellos.
+        **/
+        function maximo(){
+
+            let max = 0;
+            let valor = 0;
+            let cont = 0;
+
+            /**
+             * Mientras no se pulse cancelar
+            **/
+            while(valor!=null){
+                valor = prompt("Introducir el valor "+parseInt(cont+1)+":");
+
+                /**
+                 * Si no se pulsa cancelar
+                **/
+                if(valor!=null){
+                    valor = parseFloat(valor);
+
+                    /**
+                     * Si el valor es valido
+                    **/
+                    if(!isNaN(valor)){
+
+                        /**
+                         * Si el valor introducido es mayor que el que contiene max
+                        **/
+                        if(valor>max){
+                            max = valor;
+                        }
+                        cont++
+                        
+                    }
+                }
+
+                /**
+                 * Si se ha llegado al numero de valores maximos a introducir
+                **/
+                if(cont==6){
+                    alert("El valor maximo que se ha introducido es "+max+".");
+                    valor=null;
+                }
+
+            }
+
+        }
+
+        /** Correcto
+         * En este caso debemos pedir al usuario la cantidad de números con los que queremos trabajar como máximo y se debe mostrar la suma total de esos elementos. 
+         * Si el valor obtenido es mayor a 10000 debemos de mostrar un mensaje diciendo que el número es excesivamente grande y no mostraremos el resultado del sumatorio.
+        **/
+        function sumatorio(){
+
+            let suma = 0;
+            let cont_sum = 0;
+
+            /**
+             * Mientras no se pulse cancelar
+            **/
+            while(cont_sum!=null){
+                
+                cont_sum = prompt("Introducir el numero de valores del sumatorio:");
+
+                /**
+                 * Si no se pulsa cancelar
+                **/
+                if(cont_sum!=null){
+                    
+                    cont_sum = parseInt(cont_sum);
+
+                    /**
+                     * Si el valor de numeros a introducir es valido
+                    **/
+                    if(!isNaN(cont_sum)){
+
+                        let valor = 0;
+                        let aux_cont = 0;
+
+                        /**
+                         * Mientras no se pulse cancelar
+                        **/
+                        while(valor!=null){
+
+                            /**
+                             * Si el sumatorio es mayor de 10000
+                            **/
+                            if(suma>10000){
+                                alert("El numero es excesivamente grande.");
+                                valor=null;
+                                cont_sum=null;
+                            }
+                            else{
+
+                                /**
+                                 * Si ha llegado al maximo de datos a introducir
+                                **/
+                                if(aux_cont==cont_sum){
+                                    alert("El resultado del sumatorio es: "+suma+".");
+                                    valor=null;
+                                    cont_sum=null;
+                                }
+                                else{
+                                    valor = prompt("Introduce el valor "+parseInt(aux_cont+1)+".");
+
+                                    /**
+                                     * Si no se pulsa cancelar
+                                    **/ 
+                                    if(valor!=null){
+                                        
+                                        valor = parseFloat(valor);
+
+                                        /**
+                                         * Si el valor introducido es valido
+                                        **/
+                                        if(!isNaN(valor)){
+                                            suma+=valor;
+                                            aux_cont++;
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        /** Correcto
+         * ¿Es divisible?. En este caso pediremos dos números, si la división del primero entre el segundo es exacta lanzaremos el mensaje diciendo que es divisible. 
+         * Hay que controlar el error de que el primer número es mayor que el segundo.
+        **/
+        function dividir(){
+
+            let divisor = 0,
+            dividendo = 0,
+            cont = 0,
+            band = true;
+
+            /**
+             * Mientras la variable band sea true
+            **/
+            do{
+
+                /**
+                 * Si aun no se han introducido el dividendo y divisor
+                **/
+                if(cont<2){
+                    var eleccion = "Introducir el ";
+
+                    switch(cont){
+                        case 0:
+                            eleccion+="dividendo:";
+                            break;
+                        case 1:
+                            eleccion+="divisor:";
+                            break;
+                    }
+
+                    var valor = prompt(eleccion);
+
+                    /**
+                     * Si se pulsa cancelar
+                    **/
+                    if(valor==null){
+                        band=false;
+                    }
+                    else{
+
+                        valor = parseFloat(valor);
+                        /**
+                         * Si el valor introducido es valido
+                        **/
+                        if(!isNaN(valor)){
+                            switch(cont){
+                                case 0:
+                                    dividendo = valor;
+                                    cont++;
+                                    break;
+                                case 1:
+                                    divisor = valor;
+                                    cont++;
+                                    break;
+                            }
+
+                        }
+
+                    }
+                }
+                else{
+                    /**
+                     * Si el dividendo es mayor que el divisor
+                    **/
+                    if(dividendo<divisor){
+                        alert("El valor del dividendos es menos que el valor del divisor.");
+                        band=false;
+                    }
+                    else{
+                        /**
+                         * Si el resto de la division es 0
+                        **/
+                        if((dividendo%divisor)==0){
+                            alert("El dividendo y el divisor son divisibles.");
+                        }
+                        else{
+                            alert("El resultado de la división es: "+(dividendo/divisor)+".");
+                        }
+                        band=false;
+                    }
+                }
+
+            }while(band);
+
+        }
+
+        /**
+         * Muestra el contador de las opciones
+        **/
+        function mostrar_opciones(array){
+            let mostrar = "";
+
+            for(let i=0;i<array.length;i++){
+
+                if(array[i]>0){
+                    switch(i){
+                        case 0:
+                            mostrar+="- Media: "+array[i]+".";
+                            break;
+                        case 1:
+                            mostrar+="- Minimo: "+array[i]+".";
+                            break;
+                        case 2:
+                            mostrar+="- Maximo: "+array[i]+".";
+                            break;
+                        case 3:
+                            mostrar+="- Sumatorio"+array[i]+".";
+                            break;
+                        case 4:
+                            mostrar+="- Division"+array[i]+".";
+                            break;
+                    }
+                    mostrar+="\n";
+                }
+            }
+
+            return mostrar;
+        }
+    </script>
+</body>
+</html>

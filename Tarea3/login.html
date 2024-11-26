@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea de la Unidad 3 DWEC curso 23/24</title>
+</head>
+<body>
+    <h1>Registro del alumno en el IES Albarregas</h1>
+</body>
+    <script>
+
+        let band = false,
+        array_nombre,
+        fecha_user;
+
+        setTimeout(iniciar,100);
+
+        function iniciar(){
+            pedir_nombre();
+            pedir_fecha();
+            crear_user();
+            crear_password();
+            setTimeout(lanzar_ventana,100);
+        }
+        
+
+    /****** Bloque para pedir nombre y apellidos ******/
+
+        /**Falta controlar un bucle para el apellido
+        * Método que pide por prompt el nombre y apellidos
+        **/
+        function pedir_nombre(){
+            let veces = 0, cancelar = 0;
+        
+            /**
+             * Mientras cancelar sea distinto a null
+            **/
+            do{
+                /**
+                 * Comprobamos si no se han llegado al maximo de intentos
+                **/
+                if(veces==4){
+                    alert("No podemos realizar el registro, se han alcanzado los intentos maximos.");
+                    cancelar=null;
+                }
+                else{
+                    let nombre = prompt("Introduzca su nombre, si es compuesto no introducir espacios:");
+        
+                    /**
+                     * Se ha pulsado cancelar
+                    **/
+                    if(nombre==null){
+                        cancelar = null;
+                    }
+                    else{
+        
+                        /**
+                         * Si no es vacio el nombre
+                        **/
+                        if(nombre!==""){
+        
+                            /**
+                             * Si los caracteres son validos
+                            **/
+                            if(comprobar_caracteres(nombre)){
+                                    
+                                /**
+                                 * Si la cadena contiene una vocal y es mayor o igual a 3
+                                **/
+                                if(comprobar_cadena(nombre)){
+        
+                                    let apellidos = prompt("Introduzca sus apellidos:");
+        
+                                    /**
+                                     * Si no es vacio
+                                    **/
+                                    if(apellidos!==""){
+        
+                                        apellidos = comprobar_apellidos(apellidos);
+                                        
+                                        let encabezado_h2 = document.createElement("h2");
+
+                                        /**
+                                         * Switch que selecciona las opciones segun el resultado de controlar apellido/s
+                                        **/
+                                        switch(apellidos.length){
+                                            case 0:
+                                                alert("Apellidos no cumplen con los requisitos.");
+                                                break;
+                                            case 1:
+
+                                                encabezado_h2.textContent = nombre.toLocaleUpperCase()+" "+apellidos[0].toLocaleUpperCase(); 
+                                                document.body.appendChild(encabezado_h2);
+                                                cancelar = null;
+                                                band=true;
+                                                break;
+                                            case 2:
+                                                
+                                                encabezado_h2.textContent = nombre.toUpperCase()+" "+apellidos[0].toUpperCase()+" "+apellidos[1].toUpperCase();
+                                                document.body.append(encabezado_h2);
+                                                cancelar = null;
+                                                band=true;
+                                                break;
+                                        }
+                                            array_nombre = [nombre,apellidos];
+                                    }
+        
+                                }
+                                else{
+                                    alert("No cumple con los requisitos.");
+                                }
+        
+                            }
+                            else{
+                                alert("No son validos los caracteres");
+                            }
+        
+                        }
+        
+                        veces++;
+                    }
+                }
+        
+            }while(cancelar!=null);
+        }
+        
+        /** Correcto
+         * Metodo que comprueba si son letras
+        **/
+            function comprobar_caracteres(cadena){
+        
+            /*Eliminamos los espacios de los extremos*/
+            cadena = cadena.trim();
+        
+            /**
+             * Recorremos la cadena
+            **/
+            for(let caracter of cadena){
+        
+                /**
+                 * Si el caracter es un numero
+                **/
+                if(!isNaN(parseInt(caracter))){
+                    return false;
+                }
+                else{
+                    if(caracter==" "){
+                        return false;
+                    }
+                }
+        
+            }
+        
+            return true;
+        }
+        
+        /**Correcto
+         * Metodo que comprueba si la cadena pasada por parametro cumple con los requisitos
+         * de tener 1 vocal y 3 carecteres
+        **/
+        function comprobar_cadena(cadena){
+            let vocales = "aeiou";
+        
+            /*Eliminamos los espacios de los extremos*/
+            cadena = cadena.trim();
+        
+            /**
+             * Si la longitud es mayor o igual a 3
+            **/
+            if(cadena.length >= 3){
+                    
+                cadena = cadena.toLowerCase();
+        
+                for(let caracter of cadena){
+        
+                    /**
+                     * Si vocales contiene el caracter
+                    **/
+                    if(vocales.search(caracter)>-1){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        
+        /**Correcto
+         * Metodo que comprueba que hay espacios entre los apellidos y que son validos
+        **/
+        function comprobar_apellidos(cadena){
+        
+            let apellidos = [];
+                
+            /*Eliminamos los espacios de los extremos*/
+            cadena = cadena.trim();
+        
+            /**
+             * Si no tiene separación
+            **/
+            if(cadena.indexOf(" ")==-1){
+        
+                /**
+                 * Si son validos los caracteres
+                **/
+                if(comprobar_caracteres(cadena)){
+                        
+                    /**
+                     * Si cumple los requisitos
+                    **/
+                    if(comprobar_cadena(cadena)){
+                            
+                        /**
+                         * Si es extrangero
+                        **/
+                        if(confirm("¿Es extranjero?")){
+                            apellidos.push(cadena);
+                        }
+                    }
+                }
+        
+            }
+            /**
+             * Si tiene un unico espacio
+            **/
+            else if(cadena.indexOf(" ")==cadena.lastIndexOf(" ")){
+                    
+                let ape1 = cadena.substr(0,cadena.indexOf(" ")),
+                ape2 = cadena.substr(cadena.indexOf(" ")+1,cadena.length);
+        
+                /**
+                 * Si son los caracteres validos para apellido 1
+                **/
+                if(comprobar_caracteres(ape1)){
+        
+                    /**
+                     * Si apellido 1 cumple los requisitos
+                    **/
+                    if(comprobar_cadena(ape1)){
+        
+                        /**
+                         * Si son los caracteres validos para apellido 2
+                        **/
+                        if(comprobar_caracteres(ape2)){
+                                
+                        /**
+                         * Si apellido 2 cumple los requisitos
+                        **/
+                        if(comprobar_cadena(ape2)){
+                            apellidos.push(ape1);
+                            apellidos.push(ape2);
+                        }
+                    }
+        
+                }
+            }
+        
+        }
+            else{
+                alert("Se han introducido mas de 2 apellidos.");
+            }
+        
+            return apellidos;
+        }
+    
+        
+
+    /****** Pedir Fecha ******/
+        
+        /** Correcto
+         * Metodo que pide la fecha
+        **/
+        function pedir_fecha(){
+            /**
+             * Comprobamos que se ha pedido el nombre de forma correcta
+            **/
+            if(band){
+                let fecha;
+                band = false;
+                /**
+                 * Mientras no se pulse cancelar o se introduzcan de forma correcta la fecha
+                **/
+                do{
+                    fecha = prompt("Introduzca fecha (dd/mm/aaaa), introducir un 0 delante de valores menos de 9 para el dia y el mes:");
+                    /**
+                     * Si se ha pulsado cancelar
+                    **/
+                    if(fecha!=null){
+                        
+                        fecha = fecha.trim();
+                        /**
+                         * Si cumplem con uno de los tamaños contemplados
+                        **/
+                        if(fecha.length==10){
+                            
+                            let aux_fecha = comprobar_fecha(fecha);
+
+                            /**
+                             * Si comprobar_fecha no es undefined
+                            **/
+                            if(aux_fecha!=undefined){
+                                let encabezado_h3 = document.createElement("h3");
+                                encabezado_h3.textContent = aux_fecha.getDate()+"/"+(aux_fecha.getMonth()+1)+"/"+aux_fecha.getFullYear();
+                                document.body.append(encabezado_h3);
+                                let edad_h3 = document.createElement("h3");
+                                let edad = (new Date()).getFullYear()-aux_fecha.getFullYear();
+                                edad_h3.textContent = "Edad: "+edad;
+                                document.body.append(edad_h3);
+
+                                fecha_user = aux_fecha;
+                                band = true;
+                                fecha = null;
+                            }
+                        }
+                        else{
+                            alert("La fecha no cumple con el tamaño. Vuelve a introducirla.");
+                        }
+                    }
+        
+                }while(fecha!=null);
+                    
+            }
+                
+        }
+
+        /** Correcto
+         * Metodo que valida la fecha introducida
+        **/
+        function comprobar_fecha(cadena){
+
+            let error="",
+            fecha;
+
+            /**
+             * Si los separadores estan en su lugar
+            **/
+            if(cadena.charAt(2)=='/'&&cadena.charAt(5)=='/'){
+                
+                let dia = parseInt(cadena.substring(0,2)),
+                mes = parseInt(cadena.substring(3,5)),
+                anio = parseInt(cadena.substring(6,cadena.length));
+
+                /**
+                 * Si dia no es un numero
+                **/
+                if(isNaN(dia)){
+                    error += "El dia no es un numero.\n";
+                }
+                else{
+                    if((dia<1)||(dia>31)){
+                        error += "El dia no es un numero valido.\n";
+                    }
+                }
+
+                /**
+                 * Si mes no es un numero
+                **/
+                if(isNaN(mes)){
+                    error += "El mes no es un numero.\n";
+                }
+                else
+                {
+                    if((mes<1)||(mes>12)){
+                        error += "El mes no es un numero valido.\n";
+                    }
+                }
+
+                /**
+                 * Si año no es un numero
+                **/
+                if(isNaN(anio)){
+                    error += "El año no es un numero.\n";
+                }
+                else{
+                    let edad = (new Date()).getFullYear() - anio;
+                    
+                    if(edad<18||edad>90){
+                        error += "No cumple con la edad para registrarse.\n";
+                    }
+                } 
+
+                /**
+                 * Si error es ""
+                **/
+                if(error==""){
+                    fecha = new Date();
+                    fecha.setDate(dia);
+                    fecha.setMonth(mes-1);
+                    fecha.setFullYear(anio);
+                }
+                else{
+                    error = "Los campos que no cumplen son:\n\n"+error;
+                    alert(error);
+                }
+
+            }
+            else{
+                alert("Los separadores no estan en la posicion correcta.");
+            }
+
+            return fecha;
+        }
+
+        
+
+    /****** Crear el nombre de usuario ******/
+
+        /** Correcto
+         * Metodo que genera el nombre de usuario
+        **/
+        function crear_user(){
+            
+            /**
+             * Comprobamos que ha introducido todo lo anterior de forma correcta y no se ha pulsado cancelar anteriormente
+            **/
+            if(band){
+                let user;
+
+                user = (array_nombre[0].charAt(2)).toUpperCase();
+                
+                /**
+                 * Si el primer apellido es mayor o igual que 7
+                **/
+                if(array_nombre[1][0].length>=7){
+                    user += (array_nombre[1][0].substring(0,7)).toLowerCase();
+                }
+                else{
+                    user += (array_nombre[1][0]).toLowerCase();
+                }
+
+                /**
+                 * Si el array_nombre contiene un array en la posicion 2 con dos posiciones, tenemos dos apellidos
+                **/
+                if(array_nombre[1].length==2){
+                    user += (array_nombre[1][1].charAt(0)).toLowerCase();
+                }
+                else{
+                    user += "r";
+                }
+
+                let encabezado_h4 = document.createElement("h4");
+                encabezado_h4.textContent = "Usuario: '"+user+"'.";
+                document.body.append(encabezado_h4);
+                
+            }
+        }
+
+
+    /****** Creación de contraseña ******/
+        
+        /** Correcto
+         * Metodo para crear la contraseña
+        **/
+        function crear_password(){
+            
+            /**
+             * Comprobamos que ha introducido todo lo anterior de forma correcta y no se ha pulsado cancelar anteriormente
+            **/
+            if(band){
+                let password = ((fecha_user.getFullYear()).toString()).substring(2,4);
+
+                let char1 = valor_aleatorio(array_nombre[0]),
+                char2 = valor_aleatorio(array_nombre[0]);
+
+                while(char1===char2){
+                    char2 = valor_aleatorio(array_nombre[0]);
+                }
+
+                password = char1+char2+password;
+
+                let encabezado_h4 = document.createElement("h4");
+                encabezado_h4.textContent = "Contraseña: '"+password+"' .";
+                document.body.append(encabezado_h4);
+            }
+        }
+
+        /** Correcto
+         * Metodo que seleciona al azar un caracter de una cadena dada
+        **/
+        function valor_aleatorio(cadena){
+            let posicion = Math.floor(Math.random() * cadena.length);
+
+            return cadena.charAt(posicion);
+        }
+
+
+        /****** Acceso a otra ventana ******/
+        function lanzar_ventana(){
+            if(band){
+                let acceso = confirm("¿Quiere acceder al sitio?");
+                
+                if(acceso){
+                    let inicio = window.open("index.html");
+                }
+
+            }
+        }
+    </script>
+</html>

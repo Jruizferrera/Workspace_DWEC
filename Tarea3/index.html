@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Tarea 3 23/24</title>
+</head>
+<body>
+    <script>
+
+        document.body.style.backgroundColor = "#fb9984";
+        document.body.style.padding = "25px";
+
+        /**
+         * Declaración de los div a utilizar
+        **/
+        let encabezado = document.createElement("div"),
+
+        contenido = document.createElement("div"),
+        contenido_izq = document.createElement("div"),
+        contenido_central = document.createElement("div"),
+        contenido_der = document.createElement("div"),
+
+        pie = document.createElement("div");
+
+        /**
+         * Construccion del contenedor superior
+        **/
+        encabezado.id = "encabezado";
+        encabezado.style.height = "10%";
+        encabezado.style.backgroundColor = "#ffdad2";
+        encabezado.style.borderRadius = "20px";
+        encabezado.style.display = "flex";
+        encabezado.style.alignItems="center";
+        encabezado.style.justifyContent = "center";
+        encabezado.style.textAlign="justify";
+        encabezado.style.wordBreak = "break-word";
+        encabezado.style.overflow="hidden";
+
+
+        let titulo = document.createElement("h1"), fechaactual = new Date();
+        titulo.textContent = "Bienvenido al sitio del Instituto Albarregas y la fecha de hoy es "+fechaactual.getDate()+'/'+fechaactual.getMonth()+'/'+fechaactual.getFullYear()+'.';
+        encabezado.append(titulo);
+
+        /**
+         * Construccion del contenedor medio
+        **/
+        contenido.id = "contenido";
+        contenido.style.height = "80%";
+        contenido.style.display = "flex";
+        contenido.style.marginTop = "4px";
+        contenido.style.marginBottom = "4px";
+
+        /**
+         * Contenido del contenedor medio izq
+        **/
+        contenido_izq.id ="contenido-izq";
+        contenido_izq.style.width ="25%";
+        contenido_izq.style.padding="5px";
+        contenido_izq.style.backgroundColor="white";
+        contenido_izq.style.borderRadius = "20px";
+        contenido_izq.style.wordBreak = "break-word";
+        contenido_izq.style.overflow="hidden";
+
+        /**
+         * Contenido del div mid_left
+        **/
+        titulo = document.createElement("h3");
+        titulo.textContent = "Objeto Location";
+        titulo.style.textAlign="center";
+        titulo.style.textDecoration = "underline";
+        contenido_izq.append(titulo);
+
+        let parrafo = document.createElement("p");
+        parrafo.textContent ="Host: "+location.host;
+        contenido_izq.append(parrafo);
+
+        parrafo = document.createElement("p");
+        parrafo.textContent ="Hostname: "+location.hostname;
+        contenido_izq.append(parrafo);
+
+        parrafo = document.createElement("p");
+        parrafo.textContent = "Href: "+location.href;
+        contenido_izq.append(parrafo);
+
+        parrafo = document.createElement("p");
+        parrafo.textContent = "Pathname: "+location.pathname;
+        contenido_izq.append(parrafo);
+
+        parrafo = document.createElement("p");
+        parrafo.textContent = "Port: "+location.port;
+        contenido_izq.append(parrafo);
+
+        parrafo = document.createElement("p");
+        parrafo.textContent = "Protocol: "+location.protocol;
+        contenido_izq.append(parrafo);
+        
+
+        /**Contenido del contenedor medio medio**/
+        contenido_central.id = "contenido_central";
+        contenido_central.style.width = "50%";
+        contenido_central.style.backgroundColor="white";
+        contenido_central.style.marginLeft = "4px";
+        contenido_central.style.marginRight = "4px";
+        contenido_central.style.borderRadius = "20px";
+        contenido_central.style.overflow="hidden";
+
+        /**
+         * Contenido del contenedor central del contenido
+        **/
+
+        let contenido_central_superior = document.createElement("div"), contenido_central_inferior = document.createElement("div");
+        
+        contenido_central_superior.style.height = "50%";
+        contenido_central_superior.style.margin = "0";
+        titulo = document.createElement("h3");
+        titulo.textContent = "Mapa";
+        titulo.style.textDecoration = "underline";
+        titulo.style.textAlign ="center";
+        titulo.style.margin = "0";
+
+        let mapa = document.createElement("iframe");
+        mapa.src ="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3104.0466384257775!2d-6.336730531128105!3d38.92291148812747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1428c2cce72475%3A0xf1d9d8d665e4ae13!2sIES%20Albarregas!5e0!3m2!1ses!2ses!4v1712232848353!5m2!1ses!2ses";
+        mapa.style.width="100%";
+        mapa.style.border = "0";
+        contenido_central_superior.append(titulo,mapa);
+
+        contenido_central_inferior.style.height = "50%";
+
+        titulo = document.createElement("h3");
+        titulo.textContent = "Video";
+        titulo.style.textDecoration = "underline";
+        titulo.style.textAlign ="center";
+        titulo.style.margin = "0";
+
+        let video = document.createElement("iframe");
+        video.src = src="https://www.youtube.com/embed/XbcYohll42A?si=YTNSVIZQxJYnemfL&amp;start=6";
+        video.style.width="100%";
+        video.style.border = "0";
+        contenido_central_inferior.append(titulo,video);
+
+        contenido_central.append(contenido_central_superior,contenido_central_inferior);
+
+        /**
+         * Contenido del contenedor medio der
+        **/
+        contenido_der.id = "mid-right";
+        contenido_der.style.width = "25%";
+        contenido_der.style.padding="5px";
+        contenido_der.style.backgroundColor="white";
+        contenido_der.style.borderRadius = "20px";
+        contenido_der.style.wordBreak = "break-word";
+        contenido_der.style.overflow="hidden";
+
+        titulo = document.createElement("h3");
+        titulo.textContent = "Objeto Navigation";
+        titulo.style.textAlign="center";
+        titulo.style.textDecoration = "underline";
+        contenido_der.append(titulo);
+
+        parrafo = document.createElement("p");
+        parrafo.textContent = "Cod. Navegador: "+navigator.appCodeName;
+        contenido_der.append(parrafo);
+
+        parrafo = document.createElement("p");
+        parrafo.textContent = "Cliente: "+navigator.appName;
+        contenido_der.append(parrafo);
+
+        parrafo = document.createElement("p");
+        parrafo.textContent = "Versoion: "+navigator.appVersion;
+        contenido_der.append(parrafo);
+
+        parrafo = document.createElement("p");
+        parrafo.textContent = "Plataforma: "+navigator.platform;
+        contenido_der.append(parrafo);
+
+        parrafo = document.createElement("p");
+        parrafo.textContent = "Activado Java: "+navigator.javaEnabled();
+        contenido_der.append(parrafo);
+
+        /**Añadiendo los dic del contenedor c**/
+        contenido.append(contenido_izq,contenido_central,contenido_der);
+
+        /**Construccion del contenedor de abajo**/
+        pie.id = "bottom";
+        pie.style.height = "10%";
+        pie.style.backgroundColor = "#ffdad2";
+        pie.style.borderRadius = "20px";
+        pie.style.display = "flex";
+        pie.style.alignItems = "center";
+        pie.style.justifyContent  ="space-evenly";
+
+        
+        let img = document.createElement("img");
+        img.src = "Imagenes/copyright.png";
+        img.style.width="3%";
+        parrafo = document.createElement("p");
+        pie.textContent = "Realizado por Juanjo Ruiz Ferrera";
+
+        pie.append(parrafo,img);
+
+        /**Inserccion de todos los elementos**/
+        document.body.append(encabezado,contenido,pie);
+
+    </script>
+</body>
+</html> 

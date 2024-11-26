@@ -1,0 +1,24 @@
+body{
+    background-color: #cad2c5;
+}
+
+#contenedor{
+    background-color: #84a98c;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+form{
+    align-items: center;
+}
+
+form label{
+    display: block;
+    align-items: end;
+    margin-bottom: 10px;
+}
+
+.error{
+    background-color: rgb(231, 137, 137);
+}

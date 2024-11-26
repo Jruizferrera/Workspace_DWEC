@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">  
+    <title>Ejercicio 2 - Junio</title>
+</head>
+<body>
+    <h1>Ejercicio 2 - Junio</h1>
+
+        <div id="contenedor">
+
+            <form>
+                <label for="name">
+                    Nombre:
+                    <input type="text" id="name" name="name" autocomplete="on" required>
+                </label>
+                
+                <label for="surname">
+                    Apellidos:
+                    <input type="text" id="surname" name="surname" autocomplete="on" required>
+                </label>
+
+                <label for="genero">
+                    Género:
+                    <input type="text" id="genero" name="genero" autocomplete="on" required>
+                </label>
+
+                <label for="estatura">
+                    Estatura Mínima:
+                    <input type="text" id="estatura" name="estatura" autocomplete="on" required>
+                </label>
+
+                <label for="edad">
+                    Edad:
+                    <input type="text" id="edad" name="edad" autocomplete="on" required>
+                </label>
+
+                <label for="desempleo">
+                    Desempleo:
+                    <input type="text" id="desempleo" name="desempleo" autocomplete="on" required>
+                </label>
+
+                <label for="titulacion">
+                    Titulacion:
+                    <input type="text" name="titulacion" id="titulacion" required>
+                </label>
+
+
+                <input type="submit" value="Enviar" onclick="pulsar_enviar()">
+                
+            </form>
+
+        <fieldset>
+            <legend>
+                Mensaje de validación
+            </legend>
+            <div id="errores">
+
+            </div>
+        </fieldset>
+
+        </div>
+
+        <script src="comprobaciones.js" ></script>
+</body>
+</html>
